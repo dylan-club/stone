@@ -46,4 +46,10 @@ public class Lexer {
         }
         queue.add(new IdToken(lineNo, Token.EOL));
     }
+
+    protected void addToken(int lineNo, Matcher matcher) {
+        String m = matcher.group(1);
+        if (m != null) { // if not a space
+        }
+    }
 }
