@@ -50,6 +50,17 @@ public class Lexer {
     protected void addToken(int lineNo, Matcher matcher) {
         String m = matcher.group(1);
         if (m != null) { // if not a space
+            if (matcher.group(2) == null) { // not a comment
+                Token token;
+                if (matcher.group(3) != null) {
+                    token = new NumToken(lineNo, Integer.parseInt(m));
+                } else if (matcher.group(4) != null) {
+                    token = new StrToken(lineNo, toStringLiteral(m);)
+                } else {
+                    token = new IdToken(lineNo, m);
+                }
+                queue.add(token);
+            }
         }
     }
 }
