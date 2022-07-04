@@ -63,4 +63,23 @@ public class Lexer {
             }
         }
     }
+
+    protected String toStringLiteral(String rawStr) {
+        StringBuilder builder = new StringBuilder();
+        int len = rawStr.length() - 1;
+        for (int i = 1; i < len; i++) {
+            char c = rawStr.charAt(i);
+            if (c == '\\' && (i + 1) < len) {
+                char temp = rawStr.charAt(i + 1);
+                if (temp == '\\' || temp == '"') {
+                    c = rawStr.charAt(++i);
+                }else if (temp == 'n') {
+                    ++i;
+                    c = '\n';
+                }
+            }
+            builder.append(c);
+        }
+        return builder.toString();
+    }
 }
